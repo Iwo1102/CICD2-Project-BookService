@@ -1,10 +1,10 @@
 package ie.atu.bookservice;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BookController {
@@ -22,4 +22,26 @@ public class BookController {
 
         return book;
     }
+
+    @PostMapping("/saveBook")
+    public String addBookToRepo(@RequestBody Book book) {
+        if (book == null) {
+            return "No book found";
+        }
+        bookService.addBook(book);
+        return "Added book " + book.getBookTitle();
+    }
+
+    @DeleteMapping("/deleteBook/{id}")
+    public String deleteBookFromRepo(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return "Book deleted";
+    }
+
+    @PutMapping("/updateBook/{title}")
+    String editBookInRepo(@PathVariable String title, @RequestBody Book book){
+        bookService.updateBook(title, book);
+        return "Book updated";
+    }
+
 }
