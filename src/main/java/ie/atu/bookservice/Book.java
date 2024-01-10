@@ -20,18 +20,18 @@ public class Book {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
-  //  @NotBlank(message = "Title Cannot be blank")
+    @NotBlank(message = "Title Cannot be blank")
     private String bookTitle;
 
-  //  @NotBlank(message = "Author Cannot be blank")
+    @NotBlank(message = "Author Cannot be blank")
     private String bookAuthor;
 
-  //  @NotNull(message = "year cannot be blank")
+    @NotNull(message = "year cannot be blank")
     private int bookYear;
 
-  //  @Min(value = 0, message = "Amount cannot be less than 0")
+    @Min(value = 0, message = "Amount cannot be less than 0")
     private int bookAmount;
 
- //   @NotNull(message = "Age Range must be be entered")
+    @NotNull(message = "Age Range must be be entered")
     private int bookAgeRange;
 }
